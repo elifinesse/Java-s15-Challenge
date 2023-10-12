@@ -1,25 +1,26 @@
 package com.workintech.library.people;
 
+import java.util.Set;
 import java.util.TreeSet;
 
-import com.workintech.library.Book;
+import com.workintech.library.literature.Book;
 
 public class Author extends Person {
 
-    private TreeSet<Book> books;
+    private Set<Book> books;
 
     public Author(String id, String fullName) {
         super(id, fullName);
         this.books = new TreeSet<>(); //hard dependency(fix later)
     }
 
-    public Author(String id, String fullName, TreeSet<Book> books) {
+    public Author(String id, String fullName, Set<Book> books) {
         super(id, fullName);
         this.books = books;
     }
 
 
-    public TreeSet<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 

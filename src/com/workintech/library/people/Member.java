@@ -2,7 +2,7 @@ package com.workintech.library.people;
 
 import java.util.List;
 
-import com.workintech.library.Book;
+import com.workintech.library.literature.Book;
 
 public class Member extends Person{
     private MembershipType membershipType;

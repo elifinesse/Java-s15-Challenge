@@ -3,7 +3,7 @@ package com.workintech.library.literature;
 import java.time.LocalDate;
 import java.util.Set;
 
-import com.workintech.library.Author;
+import com.workintech.library.people.Author;
 import com.workintech.library.people.Member;
 
 public class Journal extends Periodical{
@@ -40,8 +40,7 @@ public class Journal extends Periodical{
 
     @Override
     public int compareTo(Literature o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+        return getLib_id() - o.getLib_id();
     }
 
     @Override

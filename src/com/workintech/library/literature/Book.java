@@ -1,22 +1,29 @@
 package com.workintech.library.literature;
 
 import java.util.List;
-import java.util.TreeSet;
+import java.util.Set;
 
-import com.workintech.library.Author;
+import com.workintech.library.people.Author;
 import com.workintech.library.people.Member;
 
-public class Book extends Literature{
+public class Book extends Literature implements Borrowable{
 
     private int copies;
     private boolean isAvailableAsEbook;
-    private TreeSet<Author> authors;
+    private Set<Author> authors;
     private List<Member> holders;
 
-    public Book(int lib_id, String name, int copies, boolean isAvailableAsEbook, TreeSet<Author> authors, List<Member> holders) {
+    public Book(int lib_id, String name, int copies, boolean isAvailableAsEbook, Set<Author> authors, List<Member> holders) {
         super(lib_id, name);
         this.authors = authors;
-        this.copies = copies;
+        for(Author author: authors){
+            author.addBook(this);
+        }
+        if(copies < 0){
+            this.copies = 0;
+        } else{
+            this.copies = copies;
+        }
         this.isAvailableAsEbook = isAvailableAsEbook;
         this.holders = holders;
     }
@@ -29,7 +36,7 @@ public class Book extends Literature{
         return isAvailableAsEbook;
     }
 
-    public TreeSet<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
@@ -51,5 +58,10 @@ public class Book extends Literature{
                 ", authors=" + authors +
                 ", holders=" + holders +
                 '}';
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return copies > 0;
     }
 }
