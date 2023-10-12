@@ -28,7 +28,7 @@ public class Main {
         Set<Author> authors = new TreeSet<>();
         authors.add(author); 
         authors.add(author2); 
-        Book book = new Book(1, "hamlet", 2, false, authors, null);
+        Book book = new Book(1, "hamlet", 2, false, authors, null, Category.DRAMA);
 
         System.out.println(author);
         System.out.println("***********");
