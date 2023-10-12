@@ -2,7 +2,7 @@ package literature;
 
 import java.time.LocalDate;
 
-public class Periodical extends Literature implements MembershipAvailable{
+public abstract class Periodical extends Literature implements MembershipAvailable{
     private LocalDate publicationDate;
     private int volume;
     private int issue;

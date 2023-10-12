@@ -1,10 +1,7 @@
 package literature;
 
-import java.util.TreeSet;
 
-import com.workintech.library.Author;
-
-public abstract class Literature {
+public abstract class Literature implements Comparable<Literature>{
     private int lib_id;
     private String name;
 
