@@ -15,6 +15,12 @@ public class Author implements Comparable<Author> {
         this.books = new TreeSet<>(); //hard dependency(fix later)
     }
 
+    public Author(int author_id, String name, TreeSet<Book> books) {
+        this.author_id = author_id;
+        this.name = name;
+        this.books = books;
+    }
+
     public int getAuthor_id() {
         return author_id;
     }
