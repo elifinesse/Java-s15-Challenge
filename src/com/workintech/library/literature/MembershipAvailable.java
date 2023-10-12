@@ -1,4 +1,4 @@
-package literature;
+package com.workintech.library.literature;
 
 import com.workintech.library.people.Member;
 

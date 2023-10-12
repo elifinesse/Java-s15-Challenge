@@ -1,4 +1,4 @@
-package literature;
+package com.workintech.library.literature;
 
 import java.time.LocalDate;
 
@@ -22,5 +22,12 @@ public abstract class Periodical extends Literature implements MembershipAvailab
     public LocalDate getPublicationDate() {
         return publicationDate;
     }
-    
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "publicationDate=" + publicationDate +
+                ", volume=" + volume +
+                ", issue=" + issue + ", ";
+    }
 }

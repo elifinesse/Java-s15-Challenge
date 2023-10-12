@@ -1,4 +1,4 @@
-package literature;
+package com.workintech.library.literature;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -43,6 +43,12 @@ public class Journal extends Periodical{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
-    
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "authors=" + authors +
+                ", isPhysicalCopyAvailable=" + isPhysicalCopyAvailable +
+                '}';
+    }
 }

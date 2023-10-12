@@ -1,4 +1,4 @@
-package literature;
+package com.workintech.library.literature;
 
 import java.time.LocalDate;
 
@@ -35,5 +35,11 @@ public class Magazine extends Periodical{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
-    
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "isAvailableAsEMagazine=" + isAvailableAsEMagazine +
+                '}';
+    }
 }

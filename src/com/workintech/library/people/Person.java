@@ -11,6 +11,14 @@ public abstract class Person implements Comparable<Person>{
         this.fullName = fullName;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

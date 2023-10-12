@@ -1,4 +1,4 @@
-package literature;
+package com.workintech.library.literature;
 
 import java.util.List;
 import java.util.TreeSet;
@@ -18,7 +18,7 @@ public class Book extends Literature{
         this.authors = authors;
         this.copies = copies;
         this.isAvailableAsEbook = isAvailableAsEbook;
-        this.authors = authors;
+        this.holders = holders;
     }
 
     public int getCopies() {
@@ -41,5 +41,15 @@ public class Book extends Literature{
     @Override
     public int compareTo(Literature o) {
         return this.getLib_id() - o.getLib_id();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "copies=" + copies +
+                ", isAvailableAsEbook=" + isAvailableAsEbook +
+                ", authors=" + authors +
+                ", holders=" + holders +
+                '}';
     }
 }
