@@ -11,7 +11,7 @@ public class Author extends Person {
 
     public Author(String id, String fullName) {
         super(id, fullName);
-        this.books = new TreeSet<>(); //hard dependency(fix later)
+        this.books = new TreeSet<>();
     }
 
     public Author(String id, String fullName, Set<Book> books) {
@@ -27,11 +27,22 @@ public class Author extends Person {
     public void addBook(Book book) {
         if (books == null) {
             books = new TreeSet<>();
+            books.add(book);
         }
         if (!books.contains(book)) {
             books.add(book);
         }
     }
-    
+
+    @Override
+    public String toString() {
+        Set<String> bookNames = new TreeSet<>();
+        for(Book book: books){
+            bookNames.add(book.getName());
+        }
+        return super.toString() + ", " +
+                "books=" + bookNames +
+                '}';
+    }
 }
 
