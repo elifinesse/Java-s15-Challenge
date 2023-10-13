@@ -1,6 +1,7 @@
 package com.workintech.library.people;
 
 import java.util.List;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -61,7 +62,7 @@ public class Member extends Person{
         }
     }
 
-    public void borrowBook(Book book){
+    public void borrowBook(Book book, LocalDate date){
         checkBorrowedBooks();
         if(borrowedBooks.size() < 5 && book.getCopies() > 0){
             borrowedBooks.add(book);
@@ -69,6 +70,7 @@ public class Member extends Person{
             book.checkHolders();
             book.getHolders().add(this);
             moneyOwed = moneyOwed + calculateBookFee();
+            System.out.println(issueReceipt(book, date));
         } else if(borrowedBooks.size() == 5){
             System.out.println("You cannot borrow more than 5 books.");
         } else{
@@ -76,7 +78,12 @@ public class Member extends Person{
         }
     }
 
-   
+    public String issueReceipt(Book book, LocalDate date){
+        return "Member: " + getFullName() + " with membership type: " + getMembershipType() + "\n"
+                + "borrowed book: " + book.getName() + "\n" +
+                "Total: " + getMoneyOwed() + " Date and Time: " + date + "\n" +
+                "Due Date: " + date.plusWeeks(2);
+    }
 
     public void returnBook(Book book){
        Iterator<Book> iterator = borrowedBooks.iterator();

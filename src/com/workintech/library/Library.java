@@ -6,10 +6,9 @@ import java.util.List;
 import com.workintech.library.people.Author;
 import com.workintech.library.people.Librarian;
 import com.workintech.library.people.Member;
+import com.workintech.library.people.Person;
 import com.workintech.library.literature.Book;
-import com.workintech.library.literature.Journal;
 import com.workintech.library.literature.Literature;
-import com.workintech.library.literature.Magazine;
 import com.workintech.library.literature.Periodical;
 
 public class Library {
@@ -17,11 +16,11 @@ public class Library {
     private List<Book> books;
     private List<Periodical> magazines;
     private List<Periodical> journals;
-    private List<Member> members;
+    private List<Person> members;
     private List<Author> authors;
     private List<Librarian> librarians;
 
-    public Library(List<Book> books, List<Periodical> magazines, List<Periodical> journals, List<Member> members, List<Author> authors, List<Librarian> librarians){
+    public Library(List<Book> books, List<Periodical> magazines, List<Periodical> journals, List<Person> members, List<Author> authors, List<Librarian> librarians){
         this.books = books;
         this.magazines = magazines;
         this.journals = journals;
@@ -57,7 +56,7 @@ public class Library {
         return magazines;
     }
 
-    public List<Member> getMembers() {
+    public List<Person> getMembers() {
         return members;
     }
 
@@ -85,7 +84,7 @@ public class Library {
         this.magazines = magazines;
     }
 
-    public void setMembers(List<Member> members) {
+    public void setMembers(List<Person> members) {
         this.members = members;
     }
 }

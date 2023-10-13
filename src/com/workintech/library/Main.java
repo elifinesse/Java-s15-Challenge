@@ -3,6 +3,8 @@ package com.workintech.library;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -56,7 +58,10 @@ public class Main {
         Periodical magazine = new Magazine(2, "17th Century", LocalDate.of(1616, 04, 26), 10, 4, false);
         List<Book> borrowedbooks = new ArrayList<>();
         borrowedbooks.add(book1); 
-        ((Member)member1).borrowBook(book1);
+        ((Member)member1).borrowBook(book2, LocalDate.of(2023, 10, 12));
+        ((Member)member2).borrowBook(book2, LocalDate.of(2023, 10, 12));
+        ((Member)member2).returnBook(book2);
+        
 
         List<Book> allBooks = new ArrayList<>();
         allBooks.add(book6);
@@ -81,17 +86,112 @@ public class Main {
         allAuthors.add(author3);
         allAuthors.add(author4);
         allAuthors.add(author5);
+
+        List<Person> allMembers = new ArrayList<>();
+        allMembers.add(member1);
+        allMembers.add(member2);
+        allMembers.add(member3);
+        allMembers.add(member4);
+        allMembers.add(member5);
         
         
-        Library library = new Library(allBooks, allMagazines, allJournals, null, allAuthors, null);
+        Library library = new Library(allBooks, allMagazines, allJournals, allMembers, allAuthors, null);
 
         librarian.addBook(library, book7);
-        System.out.println(library.getBooks().size());
-        librarian.removeBook(library, book5);
-        librarian.removeBook(library, book5);
-        librarian.removeBook(library, book5);
-        librarian.removeBook(library, book5);
+        
       
-        System.out.println(librarian.findLiterature(library, 2, "TOLKIEN"));
+        ((Member)member3).borrowBook(book2, LocalDate.of(2023, 10, 12));
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("1. Kitap Ekle");
+            System.out.println("2. Kitap Sil");
+            System.out.println("3. Kategoriye Göre Kitap Listele");
+            System.out.println("4. Yazarın Kitaplarını Listele");
+            System.out.println("5. Kitap Ödünç Al");
+            System.out.println("6. Kitap İade Et");
+            System.out.println("0. Çıkış");
+            System.out.print("Seçiminizi yapın: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("ID: ");
+                    String id = scanner.nextLine();
+                    int idInt = Integer.parseInt(id);
+                    System.out.print("Kitap Adı: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Yazar: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Kategori: ");
+                    String category = scanner.nextLine();
+                    Book newBook = new Book(idInt, title, author);
+                    librarian.addBook(library, newBook);
+                    System.out.println(library.getBooks());
+                    break;
+
+                case 2:
+                    System.out.print("Silinecek Kitabın ID'si: ");
+                    int deleteId = scanner.nextInt();
+                    for(Book book: library.getBooks()){
+                        if(book.getLib_id() == deleteId){
+                            librarian.removeBook(library, book);
+                        }
+                    } 
+                    System.out.println(library.getBooks());
+                    break;
+
+                case 3:
+                    System.out.print("Kategori: ");
+                    String listCategory = scanner.nextLine().toUpperCase(new Locale("en"));
+                    System.out.println(librarian.listBooksByCategory(library, Category.valueOf(listCategory)));
+                    break;
+
+                case 4:
+                    System.out.print("Yazar: ");
+                    String listAuthor = scanner.nextLine();
+                    for(Author searchAuthor: library.getAuthors()){
+                        if(searchAuthor.getFullName().toLowerCase().equals(listAuthor.toLowerCase(new Locale("en")))){
+                            librarian.listBooksByAuthor(library, searchAuthor);
+                        }
+                    }
+                    break;
+
+ /*                case 5:
+                    System.out.print("Kitap ID: ");
+                    int borrowBookId = scanner.nextInt();
+                    Book alinan = null;
+                    for(Book borrowBook: library.getBooks()){
+                        if(borrowBook.getLib_id() == borrowBookId){
+                            alinan = borrowBook;
+                        }
+                    }
+                    if (alinan != null) {
+                        System.out.print("Kullanıcı ID: ");
+                        int borrowUserId = scanner.nextInt();
+                        
+                        for (Person member : library.getMembers()) {
+                            if (member.getId() == borrowUserId && member instanceof Member) {
+                                Member thisMember = (Member) member;
+                                thisMember.borrowBook(alinan, LocalDate.of(2023, 10, 12));
+                            }
+                        }
+                    } else {
+                        System.out.println("Kitap bulunamadı.");
+                    }
+                    break;
+ */
+                case 0:
+                    System.out.println("Çıkış yapılıyor.");
+                    scanner.close();
+                    System.exit(0);
+
+                default:
+                    System.out.println("Verilen sayılar arasından seçim yapın.");
+            }
+        }
     }
 }

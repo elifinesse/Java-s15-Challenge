@@ -15,6 +15,12 @@ public class Book extends Literature implements Borrowable{
     private Set<Author> authors;
     private List<Member> holders;
     private Category category;
+    private String author;
+
+    public Book(int lib_id, String name, String author){
+        super(lib_id, name);
+        this.author = author;
+    }
 
     public Book(int lib_id, String name, int copies, boolean isAvailableAsEbook, Set<Author> authors, List<Member> holders, Category category) {
         super(lib_id, name);
