@@ -11,7 +11,7 @@ public class Member extends Person{
     private List<Book> borrowedBooks;
     private double moneyOwed;
     
-    public Member(String id, String fullName, MembershipType membershipType) {
+    public Member(int id, String fullName, MembershipType membershipType) {
         super(id, fullName);
         this.membershipType = membershipType;
         

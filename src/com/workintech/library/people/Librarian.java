@@ -1,18 +1,20 @@
 package com.workintech.library.people;
 
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
 import com.workintech.library.Library;
 import com.workintech.library.literature.Book;
 import com.workintech.library.literature.Category;
+import com.workintech.library.literature.Literature;
 
 public class Librarian extends Person{
 
     private String password;
 
-    public Librarian(String id, String fullName, String password) {
+    public Librarian(int id, String fullName, String password) {
         super(id, fullName);
         this.password = password;
     }
@@ -22,6 +24,7 @@ public class Librarian extends Person{
             book.setCopies(book.getCopies() + 1);
         } else{
             library.getBooks().add(book);
+            library.getAllLiterature().add(book);
         }
     }
 
@@ -46,6 +49,30 @@ public class Librarian extends Person{
             }
         }
         return sameCategory;
+    }
+
+    public Set<Literature> findLiterature(Library library, int searchCriteria, String name){
+        Set<Literature> found = new TreeSet<>();
+        if(searchCriteria == 1){
+            for(Literature lit: library.getAllLiterature()){
+                if(lit.getName().toLowerCase(new Locale("en")).contains(name.toLowerCase(new Locale("en")))){
+                    found.add(lit);
+                }
+            }
+        } else if(searchCriteria == 2){
+            for(Author author: library.getAuthors()){
+                if(author.getFullName().toLowerCase(new Locale("en")).contains(name.toLowerCase(new Locale("en")))){
+                    found.addAll(author.getBooks());
+                }
+            }
+        } else if(searchCriteria == 3){
+            for(Literature lit: library.getAllLiterature()){
+                if(lit.getLib_id() == Integer.parseInt(name)){
+                    found.add(lit);
+                }
+            }
+        }
+        return found;
     }
 
     public Set<Book> listBooksByAuthor(Library library, Author author){

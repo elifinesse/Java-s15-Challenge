@@ -1,5 +1,6 @@
 package com.workintech.library;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.workintech.library.people.Author;
@@ -9,24 +10,28 @@ import com.workintech.library.literature.Book;
 import com.workintech.library.literature.Journal;
 import com.workintech.library.literature.Literature;
 import com.workintech.library.literature.Magazine;
+import com.workintech.library.literature.Periodical;
 
 public class Library {
     private List<Literature> allLiterature;
     private List<Book> books;
-    private List<Magazine> magazines;
-    private List<Journal> journals;
+    private List<Periodical> magazines;
+    private List<Periodical> journals;
     private List<Member> members;
     private List<Author> authors;
     private List<Librarian> librarians;
 
-    public Library(List<Literature> allLiterature, List<Book> books, List<Magazine> magazines, List<Journal> journals, List<Member> members, List<Author> authors, List<Librarian> librarians){
-        this.allLiterature = allLiterature;
+    public Library(List<Book> books, List<Periodical> magazines, List<Periodical> journals, List<Member> members, List<Author> authors, List<Librarian> librarians){
         this.books = books;
         this.magazines = magazines;
         this.journals = journals;
         this.members = members;
         this.authors = authors;
         this.librarians = librarians;
+        allLiterature = new ArrayList<>();
+        allLiterature.addAll(journals);
+        allLiterature.addAll(books);
+        allLiterature.addAll(magazines);
     }
     public List<Literature> getAllLiterature() {
         return allLiterature;
@@ -40,7 +45,7 @@ public class Library {
         return books;
     }
 
-    public List<Journal> getJournals() {
+    public List<Periodical> getJournals() {
         return journals;
     }
 
@@ -48,7 +53,7 @@ public class Library {
         return librarians;
     }
 
-    public List<Magazine> getMagazines() {
+    public List<Periodical> getMagazines() {
         return magazines;
     }
 
@@ -68,7 +73,7 @@ public class Library {
         this.books = books;
     }
 
-    public void setJournals(List<Journal> journals) {
+    public void setJournals(List<Periodical> journals) {
         this.journals = journals;
     }
 
@@ -76,7 +81,7 @@ public class Library {
         this.librarians = librarians;
     }
 
-    public void setMagazines(List<Magazine> magazines) {
+    public void setMagazines(List<Periodical> magazines) {
         this.magazines = magazines;
     }
 

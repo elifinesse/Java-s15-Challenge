@@ -23,12 +23,14 @@ public class Main {
         System.out.println(journal); */
 
 
-        Author author = new Author("1", "shakespeare", null);
-        Author author2 = new Author("2", "scandinavian myth", null);
-        Set<Author> authors = new TreeSet<>();
+        Author author = new Author(1, "shakespeare", null);
+        Author author2 = new Author(2, "scandinavian myth", null);
+        /* Set<Author> authors = new TreeSet<>();
         authors.add(author); 
-        authors.add(author2); 
-        Book book = new Book(1, "hamlet", 2, false, authors, null, Category.DRAMA);
+        authors.add(author2); */ 
+        Book book = new Book(1, "hamlet", 2, false, null, null, Category.DRAMA);
+        book.addAuthor(author2);
+        book.addAuthor(author);
 
         System.out.println(author);
         System.out.println("***********");

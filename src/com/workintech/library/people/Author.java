@@ -9,12 +9,12 @@ public class Author extends Person {
 
     private Set<Book> books;
 
-    public Author(String id, String fullName) {
+    public Author(int id, String fullName) {
         super(id, fullName);
         this.books = new TreeSet<>();
     }
 
-    public Author(String id, String fullName, Set<Book> books) {
+    public Author(int id, String fullName, Set<Book> books) {
         super(id, fullName);
         this.books = books;
     }
@@ -37,6 +37,9 @@ public class Author extends Person {
     @Override
     public String toString() {
         Set<String> bookNames = new TreeSet<>();
+        if(books == null){
+         books = new TreeSet<>();
+        }   
         for(Book book: books){
             bookNames.add(book.getName());
         }

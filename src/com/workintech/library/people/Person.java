@@ -3,15 +3,15 @@ package com.workintech.library.people;
 import java.util.Objects;
 
 public abstract class Person implements Comparable<Person>{
-    private String id;
+    private int id;
     private String fullName;
 
-    public Person(String id, String fullName){
+    public Person(int id, String fullName){
         this.id = id;
         this.fullName = fullName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
